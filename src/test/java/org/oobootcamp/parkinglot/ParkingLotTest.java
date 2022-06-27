@@ -20,18 +20,6 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_return_multiple_valid_ticket_when_park_multiple_car_given_parking_lot_with_enough_space() {
-        ParkingLot parkingLot = new ParkingLot(5);
-
-        Ticket ticket = parkingLot.park(new Car());
-        Ticket ticket1 = parkingLot.park(new Car());
-
-        assertThat(ticket).isNotNull();
-        assertThat(ticket1).isNotNull();
-        assertNotSame(ticket, ticket1);
-    }
-
-    @Test
     void should_fail_when_park_car_given_parking_lot_full() {
         ParkingLot parkingLot = new ParkingLot(0);
 
@@ -39,7 +27,7 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_pick_my_car_when_pick_given_parking_lot_with_only_my_car_parked_in() {
+    void should_pick_my_car_when_pick_given_valid_ticket_and_parking_lot_with_my_car_parked_in() {
         ParkingLot parkingLot = new ParkingLot(1);
         Car myCar = new Car();
 
@@ -51,34 +39,11 @@ public class ParkingLotTest {
     }
 
     @Test
-    void should_pick_my_car_when_pick_given_parking_lot_with_multiple_cars_parked_in() {
-        ParkingLot parkingLot = new ParkingLot(2);
-        Car myCar = new Car();
-        Car otherCar = new Car();
-
-        Ticket myTicket = parkingLot.park(myCar);
-        parkingLot.park(otherCar);
-
-        Car pickedCar = parkingLot.pick(myTicket);
-
-        assertSame(myCar, pickedCar);
-        assertNotSame(otherCar, pickedCar);
-    }
-
-    @Test
     void should_fail_when_pick_with_invalid_ticket_given_parking_lot_with_cars_parked_in() {
         ParkingLot parkingLot = new ParkingLot(2);
         parkingLot.park(new Car());
 
         assertThrows(TicketInvalidException.class, () -> parkingLot.pick(new Ticket()));
-    }
-
-    @Test
-    void should_fail_when_pick_with_null_ticket_given_parking_lot_with_cars_parked_in() {
-        ParkingLot parkingLot = new ParkingLot(2);
-        parkingLot.park(new Car());
-
-        assertThrows(TicketInvalidException.class, () -> parkingLot.pick(null));
     }
 
     @Test
