@@ -21,5 +21,13 @@ public class SmartParkingGuy {
         if (parkingLots.isEmpty()) {
             throw new SmartParkingGuyNotManageParkingLot();
         }
+        ParkingLot parkingLot = parkingLots.get(0);
+        for (int i = 1; i < parkingLots.size(); i++) {
+            ParkingLot currentParkingLot = parkingLots.get(i);
+            if (currentParkingLot.getAvailableLots() > parkingLot.getAvailableLots()) {
+                parkingLot = currentParkingLot;
+            }
+        }
+        parkingLot.park(car);
     }
 }

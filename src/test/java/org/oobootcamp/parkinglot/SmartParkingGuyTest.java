@@ -22,4 +22,16 @@ public class SmartParkingGuyTest {
         SmartParkingGuy smartParkingGuy = new SmartParkingGuy();
         assertThrows(SmartParkingGuyNotManageParkingLot.class, () -> smartParkingGuy.park(new Car()));
     }
+
+    @Test
+    void should_smart_parking_guy_can_park_car_in_parking_lots_which_with_more_lots_when_parking_car() {
+        SmartParkingGuy smartParkingGuy = new SmartParkingGuy();
+        ParkingLot smallParkingLot = new ParkingLot(1);
+        ParkingLot bigParkingLot = new ParkingLot(2);
+        smartParkingGuy.manage(smallParkingLot);
+        smartParkingGuy.manage(bigParkingLot);
+        smartParkingGuy.park(new Car());
+        assertEquals(smallParkingLot.getAvailableLots(), 1);
+        assertEquals(bigParkingLot.getAvailableLots(), 1);
+    }
 }
