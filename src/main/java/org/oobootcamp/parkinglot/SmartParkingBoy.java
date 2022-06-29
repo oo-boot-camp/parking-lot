@@ -1,15 +1,12 @@
 package org.oobootcamp.parkinglot;
 
-import org.oobootcamp.parkinglot.exception.SmartParkingBoyNotManageParkingLot;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.oobootcamp.parkinglot.exception.ParkingBoyNotManageParkingLotException;
 
 public class SmartParkingBoy extends ParkingBoy {
 
     public void park(Car car) {
         if (parkingLots.isEmpty()) {
-            throw new SmartParkingBoyNotManageParkingLot();
+            throw new ParkingBoyNotManageParkingLotException();
         }
         ParkingLot parkingLot = getParkingLotWithMostAvailableLots();
         parkingLot.park(car);

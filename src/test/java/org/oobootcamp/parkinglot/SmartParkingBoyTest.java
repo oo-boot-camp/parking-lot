@@ -1,7 +1,7 @@
 package org.oobootcamp.parkinglot;
 
 import org.junit.jupiter.api.Test;
-import org.oobootcamp.parkinglot.exception.SmartParkingBoyNotManageParkingLot;
+import org.oobootcamp.parkinglot.exception.ParkingBoyNotManageParkingLotException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +20,7 @@ public class SmartParkingBoyTest {
     @Test
     void should_smart_parking_boy_cannot_park_when_not_manage_any_parking_lot() {
         SmartParkingBoy smartParkingBoy = new SmartParkingBoy();
-        assertThrows(SmartParkingBoyNotManageParkingLot.class, () -> smartParkingBoy.park(new Car()));
+        assertThrows(ParkingBoyNotManageParkingLotException.class, () -> smartParkingBoy.park(new Car()));
     }
 
     @Test
