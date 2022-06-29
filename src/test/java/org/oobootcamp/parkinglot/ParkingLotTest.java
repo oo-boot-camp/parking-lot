@@ -55,4 +55,12 @@ public class ParkingLotTest {
         assertThrows(TicketInvalidException.class, () -> parkingLot.pick(ticket));
     }
 
+    @Test
+    void should_get_available_parking_lots_when_parked_car() {
+        ParkingLot parkingLot = new ParkingLot(3);
+        parkingLot.park(new Car());
+        parkingLot.park(new Car());
+        assertEquals(parkingLot.getAvailableLots(), 1);
+    }
+
 }
