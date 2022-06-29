@@ -63,4 +63,16 @@ public class ParkingLotTest {
         assertEquals(parkingLot.getAvailableLots(), 1);
     }
 
+    @Test
+    void should_get_correct_vacancy_rate_when_park_car() {
+        // Given
+        ParkingLot parkingLot = new ParkingLot(4);
+
+        // When
+        parkingLot.park(new Car());
+
+        // Then
+        assertEquals(parkingLot.getVacancyRate(), 0.75);
+    }
+
 }
