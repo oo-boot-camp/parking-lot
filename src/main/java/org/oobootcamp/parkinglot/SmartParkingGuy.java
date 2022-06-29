@@ -16,11 +16,15 @@ public class SmartParkingGuy {
         return parkingLots.size();
     }
 
-
     public void park(Car car) {
         if (parkingLots.isEmpty()) {
             throw new SmartParkingGuyNotManageParkingLot();
         }
+        ParkingLot parkingLot = getParkingLotWithMostAvailableLots();
+        parkingLot.park(car);
+    }
+
+    private ParkingLot getParkingLotWithMostAvailableLots() {
         ParkingLot parkingLot = parkingLots.get(0);
         for (int i = 1; i < parkingLots.size(); i++) {
             ParkingLot currentParkingLot = parkingLots.get(i);
@@ -28,6 +32,6 @@ public class SmartParkingGuy {
                 parkingLot = currentParkingLot;
             }
         }
-        parkingLot.park(car);
+        return parkingLot;
     }
 }
