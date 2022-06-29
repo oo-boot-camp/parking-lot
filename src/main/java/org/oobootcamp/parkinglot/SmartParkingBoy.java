@@ -1,11 +1,11 @@
 package org.oobootcamp.parkinglot;
 
-import org.oobootcamp.parkinglot.exception.SmartParkingGuyNotManageParkingLot;
+import org.oobootcamp.parkinglot.exception.SmartParkingBoyNotManageParkingLot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SmartParkingGuy {
+public class SmartParkingBoy {
 
     private final List<ParkingLot> parkingLots = new ArrayList<>();
     public void manage(ParkingLot parkingLot) {
@@ -18,7 +18,7 @@ public class SmartParkingGuy {
 
     public void park(Car car) {
         if (parkingLots.isEmpty()) {
-            throw new SmartParkingGuyNotManageParkingLot();
+            throw new SmartParkingBoyNotManageParkingLot();
         }
         ParkingLot parkingLot = getParkingLotWithMostAvailableLots();
         parkingLot.park(car);
